@@ -12,7 +12,11 @@
 */
 
 Route::get('/', function () {
-    return 'All cats';
+    return redirect('cats');
+});
+
+Route::get('cats', function(){
+	return 'All cats';
 });
 
 Route::get('cats/{id}', function($id){
