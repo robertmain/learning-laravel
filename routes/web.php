@@ -24,5 +24,5 @@ Route::get('cats/{id}', function($id){
 })->where('id', '[0-9]+');
 
 Route::get('about', function(){
-	return view('about')->with('number_of_cats', 9000);
+	return view('partials.about')->with('number_of_cats', 9000);
 });
