@@ -19,10 +19,9 @@ Route::get('cats', function(){
     return 'All cats';
 });
 
-Route::get('cats/{id}', function($id){
-    $cat = Furbook\Models\Cat::find($id);
+Route::get('cats/{cat}', function(Furbook\Models\Cat $cat){
     return view('partials.cats.show')->with('cat', $cat);
-})->where('id', '[0-9]+');
+})->where('id', '[0-9]+'); 
 
 Route::get('cats/breeds/{name}', function($name){
     $breed = Furbook\Models\Breed::with('cats')

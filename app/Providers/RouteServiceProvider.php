@@ -23,9 +23,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
-
         parent::boot();
+        Route::model('cat', \Furbook\Models\Cat::class);
     }
 
     /**
