@@ -20,3 +20,13 @@
     <p>Last edited: {{ $cat->updated_at->diffForHumans() }}</p>
     
 @stop
+
+@section('content')
+    <p>Date of birth: {{ $cat->date_of_birth }}</p>
+
+    <p>
+        @if($cat->breed)
+            Breed: <a href="{{ url('cats/breeds' . $cat->breed->name)}}">{{ $cat->breed->name }}</a>
+        @endif
+    </p>
+@stop

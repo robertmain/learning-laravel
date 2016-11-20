@@ -11,7 +11,7 @@ class Breed extends Model {
      *
      * @var boolean
      */
-    protected $timestamps = false;
+    public $timestamps = false;
 
     public function breed(){
         return $this->hasMany('Furbook\Models\Cat');
