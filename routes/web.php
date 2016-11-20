@@ -16,24 +16,24 @@ Route::get('/', function () {
 });
 
 Route::get('cats', function(){
-	return 'All cats';
+    return 'All cats';
 });
 
 Route::get('cats/{id}', function($id){
-	$cat = Furbook\Models\Cat::find($id);
-	return view('partials.cats.show')->with('cat', $cat);
+    $cat = Furbook\Models\Cat::find($id);
+    return view('partials.cats.show')->with('cat', $cat);
 })->where('id', '[0-9]+');
 
 Route::get('cats/breeds/{name}', function($name){
-	$breed = Furbook\Models\Breed::with('cats')
-		->whereName($name)
-		->first();
+    $breed = Furbook\Models\Breed::with('cats')
+        ->whereName($name)
+        ->first();
 
-	return view('partials.cats.index')
-		->with('breed', $breed)
-		->with('cats', $breed->cats);
+    return view('partials.cats.index')
+        ->with('breed', $breed)
+        ->with('cats', $breed->cats);
 });
 
 Route::get('about', function(){
-	return view('partials.about')->with('number_of_cats', 9000);
+    return view('partials.about')->with('number_of_cats', 9000);
 });
