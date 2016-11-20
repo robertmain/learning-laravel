@@ -20,15 +20,16 @@ Route::get('cats', function(){
 });
 
 Route::get('cats/{id}', function($id){
-	return sprintf('Cat #%s', $id);
+	$cat = Furbook\Models\Cat::find($id);
+	return view('partials.cats.show')->with('cat', $cat);
 })->where('id', '[0-9]+');
 
 Route::get('cats/breeds/{name}', function($name){
-	$breed = Furbook\Breed::with('cats')
+	$breed = Furbook\Models\Breed::with('cats')
 		->whereName($name)
 		->first();
 
-	return view('partials.gcats.index')
+	return view('partials.cats.index')
 		->with('breed', $breed)
 		->with('cats', $breed->cats);
 });

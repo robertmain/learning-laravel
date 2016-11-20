@@ -1,6 +1,6 @@
 <?php 
 
-namespace Furbook\Models\Breed
+namespace Furbook\Models\Breed;
 
 use Illuminate\Database\Eloquent\Model;
 
