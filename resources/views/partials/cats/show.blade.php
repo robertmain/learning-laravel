@@ -26,7 +26,7 @@
 
     <p>
         @if($cat->breed)
-            Breed: <a href="{{ url('cats/breeds' . $cat->breed->name)}}">{{ $cat->breed->name }}</a>
+            Breed: <a href="{{ url('cats/breeds/' . $cat->breed->name)}}">{{ $cat->breed->name }}</a>
         @endif
     </p>
 @stop
