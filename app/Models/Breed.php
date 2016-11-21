@@ -13,7 +13,7 @@ class Breed extends Model {
      */
     public $timestamps = false;
 
-    public function breed(){
+    public function cats(){
         return $this->hasMany('Furbook\Models\Cat');
     }
 }
