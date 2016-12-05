@@ -11,9 +11,15 @@ use Illuminate\Contracts\View\View;
 */
 class CatFormComposer
 {
-    
-    public function __construct(View $view)
+    protected $breeds;
+
+    public function __construct(Breed $breeds)
     {
-        $view->with('breeds', $this->breeds->lists('name', 'id'));
+        $this->breeds = $breeds;
+    }
+
+    public function compose(View $view)
+    {
+        $view->with('breeds', $this->breeds->pluck('name', 'id'));
     }
 }
