@@ -15,15 +15,15 @@ Route::get('/', function () {
     return redirect('cats');
 });
 
-Route::get('cats', function(){
+Route::get('cats', function() {
     return 'All cats';
 });
 
-Route::get('cats/{cat}', function(Furbook\Models\Cat $cat){
+Route::get('cats/{cat}', function(Furbook\Models\Cat $cat) {
     return view('partials.cats.show')->with('cat', $cat);
 })->where('id', '[0-9]+'); 
 
-Route::get('cats/breeds/{name}', function($name){
+Route::get('cats/breeds/{name}', function($name) {
     $breed = Furbook\Models\Breed::with('cats')
         ->whereName($name)
         ->first();
@@ -33,6 +33,33 @@ Route::get('cats/breeds/{name}', function($name){
         ->with('cats', $breed->cats);
 });
 
-Route::get('about', function(){
+Route::get('about', function() {
     return view('partials.about')->with('number_of_cats', 9000);
+});
+
+Route::get('cats/create', function() {
+    return view('cats.create');
+});
+
+Route::post('cats', function() {
+    $cat = Furbook\Cat::create(Input::all());
+
+    return redirect('cats/' . $cat->id)
+            ->withSuccess('Cat has been created.');
+});
+
+Route::get('cats/{cat}/edit', function(Furbook\Models\Cat $cat) {
+    return view('partials.cats.edit')->with('cat', $cat);
+});
+
+Route::put('cats/{cat}', function(Furbook\Models\Cat $cat) {
+    $cat->update(Input::all());
+    return redirect('cats/' . $cat->id)
+            ->withSuccess('Cat has been updated');
+});
+
+Route::delete('cats/{cat}', function(Furbook\Models\Cat $cat) {
+    $cat->delete();
+    return redirect('cats')
+            ->withSuccess('Cat has been deleted');
 });
