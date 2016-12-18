@@ -43,7 +43,7 @@ Route::get('about', function() {
 });
 
 Route::post('cats', function() {
-    $cat = Furbook\Cat::create(Input::all());
+    $cat = Furbook\Models\Cat::create(Input::all());
 
     return redirect('cats/' . $cat->id)
             ->withSuccess('Cat has been created.');
