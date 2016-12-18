@@ -20,6 +20,10 @@ Route::get('cats', function() {
     return 'All cats';
 });
 
+Route::get('cats/create', function() {
+    return view('partials.cats.create');
+});
+
 Route::get('cats/{cat}', function(Furbook\Models\Cat $cat) {
     return view('partials.cats.show')->with('cat', $cat);
 })->where('id', '[0-9]+'); 
@@ -36,10 +40,6 @@ Route::get('cats/breeds/{name}', function($name) {
 
 Route::get('about', function() {
     return view('partials.about')->with('number_of_cats', 9000);
-});
-
-Route::get('cats/create', function() {
-    return view('cats.create');
 });
 
 Route::post('cats', function() {
