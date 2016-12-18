@@ -23,4 +23,8 @@ class Cat extends Model {
     public function breed(){
         return $this->belongsTo('Furbook\Models\Breed');
     }
+
+    public function scopeOfBreed($query, $breedId){
+        return $query->where('breed_id', '=', $breedId);
+    }
 }
